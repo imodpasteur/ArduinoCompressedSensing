@@ -1,0 +1,53 @@
+package mw.app;
+
+/*
+  This class contains most of the tools in order to communicate with the Arduino. 
+  Note that it should rely on the MMCore driver to interact with the Arduino.
+  Although if this turns out to be too complicated, we might communicate directly with the device
+  (if possible)
+ */
+
+
+// ==== Imports
+
+// ==== Main class
+public class ArduinoLibs {
+    /* 
+       Class that contain functions to deal with Arduino stuff
+     */
+    BasisTools basistools = new BasisTools(); // Load CSV basis
+
+    /**
+     * Function takes a csv file (a matrix) as an input and returns a string 
+     *   ready to be written to a .ino file
+     * @param basis
+     * @return
+     */
+    public String csvToIno(double basis[][]) {
+        // Declarations
+        String vec;
+        int hash;
+        
+        // Hash
+        hash = basistools.hashBasis(basis);
+        vec = "char basis_id[] = \"" + hash + "\";\n";
+        
+        // Basis
+        vec += "float basis[20][102] = {{";
+        for (int j=0; j<basis.length; j++){
+            for (int i=0; i<basis[0].length; i++){
+                vec += basis[j][i];
+                if (i+1 != basis[0].length){
+                    vec += ',';
+                }
+            }
+            if (j+1 != basis.length) {
+                vec = vec + "},\n{";
+            }
+        }
+        vec += "}};";
+        
+	System.out.println("Converting to CSV. Hash value is: " + hash);
+	return(vec);
+    }
+}

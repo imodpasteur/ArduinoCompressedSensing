@@ -1,0 +1,13 @@
+// Beanshell with useful debug commands
+
+// Check if the CS mode is enabled on the device
+gui.message(mmc.getProperty("Arduino-Hub", "CSEnabled")); 
+
+// Check if the CS mode is enabled on the device
+gui.message(mmc.getProperty("Arduino-Hub", "CSBasisId"));
+
+// Get the editable property:
+gui.message(mmc.getProperty("Arduino-Hub", "Compressed sensing"));
+
+// Get the exposure recorded on the Arduino:
+gui.message(mmc.getProperty("Arduino-Hub", "Arduino Exposure"));

@@ -1,0 +1,17 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package mw.app;
+
+/** A simple class to store parameters and pass them to the GUI
+ *
+ * @author maxime
+ */
+class Parameters {
+    String basisPath;
+    String porte;
+    double basis[][];
+    int    basis_row;
+    int    basis_col;
+}
